@@ -3,6 +3,13 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"strconv"
+	"sync"
+)
+
+var (
+	counter int
+	mutex   sync.Mutex // Мьютекс для защиты доступа к counter
 )
 
 func echoString(w http.ResponseWriter, r *http.Request) {
@@ -14,7 +21,10 @@ func homeString(w http.ResponseWriter, r *http.Request) {
 }
 
 func incrementCounter(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Counter")
+	mutex.Lock()
+	counter++
+	fmt.Fprintf(w, strconv.Itoa(counter))
+	mutex.Unlock()
 }
 
 func main() {
