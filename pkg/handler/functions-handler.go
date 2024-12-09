@@ -11,7 +11,7 @@ var counter int
 var mutex sync.Mutex // Мьютекс для защиты доступа к counter
 
 func InitilizeHandler() {
-	http.Handle("/", http.FileServer(http.Dir("./static")))
+	http.Handle("/", http.FileServer(http.Dir("../../static")))
 }
 
 func InitilizeHandleFunctions() {
@@ -23,7 +23,7 @@ func InitilizeHandleFunctions() {
 }
 
 func serverFile(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, r.URL.Path[1:])
+	http.ServeFile(w, r, "../../static")
 }
 
 func homeString(w http.ResponseWriter, r *http.Request) {
@@ -33,6 +33,6 @@ func homeString(w http.ResponseWriter, r *http.Request) {
 func incrementCounter(w http.ResponseWriter, r *http.Request) {
 	mutex.Lock()
 	counter++
-	fmt.Fprintf(w, strconv.Itoa(counter))
+	fmt.Fprint(w, strconv.Itoa(counter))
 	mutex.Unlock()
 }
