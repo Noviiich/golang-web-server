@@ -10,10 +10,6 @@ import (
 var counter int
 var mutex sync.Mutex // Мьютекс для защиты доступа к counter
 
-func InitilizeHandler() {
-	http.Handle("/", http.FileServer(http.Dir("../../static")))
-}
-
 func InitilizeHandleFunctions() {
 	http.HandleFunc("/", serverFile)
 
