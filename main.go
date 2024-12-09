@@ -29,7 +29,7 @@ func incrementCounter(w http.ResponseWriter, r *http.Request) {
 	mutex.Unlock()
 }
 
-func startHandleFunctions() {
+func initilizeHandleFunctions() {
 	http.HandleFunc("/", serverFile)
 
 	http.HandleFunc("/home", homeString)
@@ -71,7 +71,7 @@ func main() {
 		switch args[0] {
 
 		case "handler_functions":
-			startHandleFunctions()
+			initilizeHandleFunctions()
 
 		case "handler_directory":
 			initilizeHandler()
