@@ -27,8 +27,10 @@ func homeString(w http.ResponseWriter, r *http.Request) {
 }
 
 func incrementCounter(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Initializing the handler functions...")
 	mutex.Lock()
 	counter++
 	fmt.Fprint(w, strconv.Itoa(counter))
 	mutex.Unlock()
+	fmt.Println("Handler functions have been initialized")
 }
