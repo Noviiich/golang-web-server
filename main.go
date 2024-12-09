@@ -6,7 +6,7 @@ import (
 	"os"
 
 	"github.com/Noviiich/golang-web-server/handler"
-	"github.com/Noviiich/golang-web-server/handler/utils"
+	"github.com/Noviiich/golang-web-server/utils"
 )
 
 var (
