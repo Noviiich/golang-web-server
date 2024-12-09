@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"net/http"
 
 	"github.com/Noviiich/golang-web-server/pkg/handler"
@@ -20,6 +21,6 @@ func main() {
 	} else {
 		handler.InitilizeHandler()
 	}
-
+	fmt.Println("Starting server on localhost:8080...")
 	http.ListenAndServe(":8080", nil)
 }
