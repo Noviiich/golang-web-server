@@ -35,8 +35,14 @@ func startHandleFunctions() {
 	http.HandleFunc("/counter", incrementCounter)
 }
 
+func initilizeHandler() {
+	http.Handle("/", http.FileServer(http.Dir("./static")))
+}
+
 func main() {
-	startHandleFunctions()
+	// startHandleFunctions()
+
+	initilizeHandler()
 
 	http.ListenAndServe(":8080", nil)
 }
