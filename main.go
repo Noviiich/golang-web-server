@@ -4,52 +4,14 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"strconv"
-	"sync"
+
+	"github.com/Noviiich/golang-web-server/handler"
+	"github.com/Noviiich/golang-web-server/handler/utils"
 )
 
 var (
-	counter    int
-	mutex      sync.Mutex // Мьютекс для защиты доступа к counter
 	valid_args = []string{"handler_functions", "handler_directory"}
 )
-
-func serverFile(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, r.URL.Path[1:])
-}
-
-func homeString(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Дом")
-}
-
-func incrementCounter(w http.ResponseWriter, r *http.Request) {
-	mutex.Lock()
-	counter++
-	fmt.Fprintf(w, strconv.Itoa(counter))
-	mutex.Unlock()
-}
-
-func initilizeHandleFunctions() {
-	http.HandleFunc("/", serverFile)
-
-	http.HandleFunc("/home", homeString)
-
-	http.HandleFunc("/counter", incrementCounter)
-}
-
-func initilizeHandler() {
-	http.Handle("/", http.FileServer(http.Dir("./static")))
-}
-
-func contains(options []string, str string) bool {
-	for _, option := range options {
-		if option == str {
-			return true
-		}
-
-	}
-	return false
-}
 
 func printUsage() {
 	fmt.Println("Usages:")
@@ -63,7 +25,7 @@ func printUsage() {
 
 func main() {
 	args := os.Args[1:]
-	if len(args) <= 0 || !contains(valid_args, args[0]) {
+	if len(args) <= 0 || !utils.Contains(valid_args, args[0]) {
 		printUsage()
 		return
 	} else {
@@ -71,10 +33,10 @@ func main() {
 		switch args[0] {
 
 		case "handler_functions":
-			initilizeHandleFunctions()
+			handler.InitilizeHandleFunctions()
 
 		case "handler_directory":
-			initilizeHandler()
+			handler.InitilizeHandler()
 
 		}
 	}
