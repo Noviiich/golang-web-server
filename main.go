@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/Noviiich/golang-web-server/handler"
-	"github.com/Noviiich/golang-web-server/utils"
+	"github.com/Noviiich/golang-web-server/pkg/handler"
+	"github.com/Noviiich/golang-web-server/pkg/utils"
 )
 
 var (
