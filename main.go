@@ -12,6 +12,10 @@ var (
 	mutex   sync.Mutex // Мьютекс для защиты доступа к counter
 )
 
+func serverFile(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, r.URL.Path[1:])
+}
+
 func echoString(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello")
 }
@@ -28,7 +32,7 @@ func incrementCounter(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", echoString)
+	http.HandleFunc("/", serverFile)
 
 	http.HandleFunc("/home", homeString)
 
