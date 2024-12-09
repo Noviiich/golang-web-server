@@ -19,7 +19,7 @@ func InitilizeHandleFunctions() {
 }
 
 func serverFile(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "../../static")
+	http.ServeFile(w, r, "./static")
 }
 
 func homeString(w http.ResponseWriter, r *http.Request) {
