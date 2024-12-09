@@ -16,10 +16,6 @@ func serverFile(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, r.URL.Path[1:])
 }
 
-func echoString(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello")
-}
-
 func homeString(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Дом")
 }
