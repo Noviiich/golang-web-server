@@ -33,10 +33,10 @@ func startHandleFunctions() {
 	http.HandleFunc("/home", homeString)
 
 	http.HandleFunc("/counter", incrementCounter)
-
-	http.ListenAndServe(":8080", nil)
 }
 
 func main() {
 	startHandleFunctions()
+
+	http.ListenAndServe(":8080", nil)
 }
