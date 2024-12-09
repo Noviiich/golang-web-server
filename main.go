@@ -27,7 +27,7 @@ func incrementCounter(w http.ResponseWriter, r *http.Request) {
 	mutex.Unlock()
 }
 
-func main() {
+func startHandleFunctions() {
 	http.HandleFunc("/", serverFile)
 
 	http.HandleFunc("/home", homeString)
@@ -35,4 +35,8 @@ func main() {
 	http.HandleFunc("/counter", incrementCounter)
 
 	http.ListenAndServe(":8080", nil)
+}
+
+func main() {
+	startHandleFunctions()
 }
