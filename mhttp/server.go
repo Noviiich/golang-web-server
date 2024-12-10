@@ -11,6 +11,12 @@ type ServerConfig struct {
 	port            string
 }
 
+type IServer interface {
+	InitilizeHandler()
+	InitilizeHandleFunctions()
+	ListenAndServe()
+}
+
 func (fs ServerConfig) InitilizeHandler() {
 	fmt.Println("Initializing handler with FileServer")
 
@@ -27,4 +33,9 @@ func InitilizeHandleFunctions() {
 	http.HandleFunc("/counter", incrementCounter)
 
 	fmt.Println("Handler functions have been initialized")
+}
+
+func (fs ServerConfig) ListenAndServe() {
+	fmt.Printf("Starting server on %s:%s...\n", fs.url, fs.port)
+	http.ListenAndServe(fs.url+":"+fs.port, nil)
 }
