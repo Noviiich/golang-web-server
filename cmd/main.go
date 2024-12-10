@@ -2,25 +2,30 @@ package main
 
 import (
 	"flag"
-	"fmt"
-	"net/http"
 
-	"github.com/Noviiich/golang-web-server/handler"
+	"github.com/Noviiich/golang-web-server/mhttp"
 )
 
 var (
 	useHandlerFunctions bool
 )
 
+const (
+	url             string = "localhost"
+	port            string = "8080"
+	staticDirectory string = "./static"
+)
+
 func main() {
 	flag.BoolVar(&useHandlerFunctions, "use-handler-functions", true, "Runs the Web Browser with handler functions")
 	flag.Parse()
 
+	server := mhttp.NewServer(url, port, staticDirectory)
+
 	if useHandlerFunctions {
-		handler.InitilizeHandleFunctions()
+		server.InitilizeHandleFunctions()
 	} else {
-		handler.InitilizeHandler()
+		server.InitilizeHandler()
 	}
-	fmt.Println("Starting server on localhost:8080...")
-	http.ListenAndServe(":8080", nil)
+	server.ListenAndServe()
 }

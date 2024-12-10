@@ -35,7 +35,7 @@ func (fs ServerConfig) InitilizeHandler() {
 	fmt.Println("FileServer has been initialized")
 }
 
-func InitilizeHandleFunctions() {
+func (fs ServerConfig) InitilizeHandleFunctions() {
 	fmt.Println("Initializing the handler functions...")
 
 	http.HandleFunc("/", serverFile)
