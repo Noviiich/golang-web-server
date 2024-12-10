@@ -1,16 +1,19 @@
 package utils
 
-import "os"
+import (
+	"fmt"
+	"os"
+)
 
-func FolderExists(path string) bool {
+func ValidateFolder(path string) error {
 	fileInfo, err := os.Stat(path)
-	if err != nil && os.IsNotExist(err) {
-		return false
+	if err != nil {
+		return err
 	}
 
-	if fileInfo.IsDir() {
-		return true
+	if fileInfo != nil && !fileInfo.IsDir() {
+		return fmt.Errorf("%s : is not a directory", path)
 	}
 
-	return false
+	return nil
 }
