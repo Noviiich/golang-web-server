@@ -17,6 +17,16 @@ type IServer interface {
 	ListenAndServe()
 }
 
+func NewServer(url, port, staticDirectory string) ServerConfig {
+	var serverConfig = ServerConfig{
+		StaticDirectory: staticDirectory,
+		url:             url,
+		port:            port,
+	}
+
+	return serverConfig
+}
+
 func (fs ServerConfig) InitilizeHandler() {
 	fmt.Println("Initializing handler with FileServer")
 
