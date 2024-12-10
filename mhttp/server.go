@@ -15,7 +15,7 @@ type ServerConfig struct {
 }
 
 type IServer interface {
-	InitilizeHandler() error
+	InitilizeFileServer() error
 	InitilizeHandleFunctions() error
 	ListenAndServe()
 }
@@ -30,7 +30,7 @@ func NewServer(url, port, staticDirectory string) ServerConfig {
 	return serverConfig
 }
 
-func (fs ServerConfig) InitilizeHandler() error {
+func (fs ServerConfig) InitilizeFileServer() error {
 	fmt.Println("Initializing handler with FileServer")
 
 	if !utils.FolderExists(fs.StaticDirectory) {

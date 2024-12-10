@@ -22,7 +22,7 @@ func main() {
 	if useHandlerFunctions {
 		err = server.InitilizeHandleFunctions()
 	} else {
-		err = server.InitilizeHandler()
+		err = server.InitilizeFileServer()
 	}
 
 	if err != nil {
