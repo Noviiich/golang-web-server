@@ -5,10 +5,18 @@ import (
 	"net/http"
 )
 
-func InitilizeHandler() {
+type ServerConfig struct {
+	StaticDirectory string
+	url             string
+	port            string
+}
+
+func (fs ServerConfig) InitilizeHandler() {
 	fmt.Println("Initializing handler with FileServer")
-	http.Handle("/", http.FileServer(http.Dir("./static")))
-	fmt.Println("Handler has been initialized")
+
+	http.Handle("/", http.FileServer(http.Dir(fs.StaticDirectory)))
+
+	fmt.Println("FileServer has been initialized")
 }
 
 func InitilizeHandleFunctions() {
