@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Noviiich/golang-web-server/pkg/handler"
+	"github.com/Noviiich/golang-web-server/handler"
 )
 
 var (
