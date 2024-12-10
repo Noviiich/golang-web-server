@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"log"
 
 	"github.com/Noviiich/golang-web-server/configs"
 	"github.com/Noviiich/golang-web-server/mhttp"
@@ -9,6 +10,7 @@ import (
 
 var (
 	useHandlerFunctions bool
+	err                 error
 )
 
 func main() {
@@ -18,9 +20,13 @@ func main() {
 	server := mhttp.NewServer(configs.URL, configs.PORT, configs.STATIC_DIRECTORY)
 
 	if useHandlerFunctions {
-		server.InitilizeHandleFunctions()
+		err = server.InitilizeHandleFunctions()
 	} else {
-		server.InitilizeHandler()
+		err = server.InitilizeHandler()
+	}
+
+	if err != nil {
+		log.Fatal(err)
 	}
 	server.ListenAndServe()
 }
